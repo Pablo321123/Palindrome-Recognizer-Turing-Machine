@@ -21,8 +21,8 @@ class MaquinaTuring:
                               self.charInicio, self.charBranco)
 
     def iniciarMaquina(self) -> bool:
-        while True:                       
-            if  not self.moverCabecote(self.lerCabecote()):
+        while True:
+            if not self.moverCabecote(self.lerCabecote()):
                 return self.responder()
 
     def responder(self) -> bool:
@@ -50,17 +50,17 @@ class MaquinaTuring:
 
     def moverCabecote(self, lst_simbs) -> bool:
         noPath = False
-                
-        for t in self.trasicoes[self.estadoAtual]:
-            t: FuncaoTransicao
-            if t.lst_simbsE == lst_simbs:                
-                noPath = True
-                                
-                if t.char_direcao == '>':                    
-                    self.maquina.moverDireita(t.lst_simbsD)
-                else:
-                    self.maquina.moverEsquerda(t.lst_simbsD)
-                self.estadoAtual = t.char_estadoPosterior
-        
-        return noPath  
-        
+
+        if self.estadoAtual in self.trasicoes.keys():
+            for t in self.trasicoes[self.estadoAtual]:
+                t: FuncaoTransicao
+                if t.lst_simbsE == lst_simbs:
+                    noPath = True
+
+                    if t.char_direcao == '>':
+                        self.maquina.moverDireita(t.lst_simbsD)
+                    else:
+                        self.maquina.moverEsquerda(t.lst_simbsD)
+                    self.estadoAtual = t.char_estadoPosterior
+
+        return noPath

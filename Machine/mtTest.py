@@ -10,8 +10,8 @@ RESET = "\033[0;0m"
 
 def lerArgs(args):
     try:
-        nomeJson = 'mt.json'  # args[1]
-        palavra = ""  # args[2]
+        nomeJson = 'mt3.json'  # args[1]
+        palavra = "acb"  # args[2]
         data = ferramentasJson.ConvertJson.lerJson(nomeJson)
     except Exception as e:
         print(e)
