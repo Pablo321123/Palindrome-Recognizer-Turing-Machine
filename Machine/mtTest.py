@@ -9,21 +9,24 @@ RESET = "\033[0;0m"
 
 
 def lerArgs(args):
-    try:
-        palavra = '' if len(args) < 3 else args[2]
-        nomeJson = args[1]        
-        data = ferramentasJson.ConvertJson.lerJson(f'../{nomeJson}')
-    except Exception as e:
-        print(e)
-
+    palavra = '' if len(args) < 3 else args[2]
+    nomeJson = args[1]
+    data = ferramentasJson.ConvertJson.lerJson(f'../{nomeJson}')
     return data, palavra
 
 
 if __name__ == "__main__":
-    # Passo os argumentos recebidos pelo terminal como parametro separados por ' '.
-    data = lerArgs(sys.argv)
-    mt = MaquinaTuring(data[0]['mt'][0], data[0]['mt'][1], data[0]['mt'][2], data[0]['mt'][3], data[0]['mt'][4],
-                       data[0]['mt'][5], data[0]['mt'][6], data[0]['mt'][7], data[0]['mt'][8], data[1])
 
-    print(f"{f'Sim' if mt.iniciarMaquina() else f'Não'}")
-    # print(f"{f'{GREEN}A linguagem {CYAN}{data[1]}{GREEN} é aceita!{RESET}' if mt.iniciarMaquina() else f'{RED}A linguagem {CYAN}{data[1]}{RED} não é aceita!{RESET}'}")
+    try:
+        # Passo os argumentos recebidos pelo terminal como parametro separados por ' '.
+        data = lerArgs(sys.argv)
+        mt = MaquinaTuring(data[0]['mt'][0], data[0]['mt'][1], data[0]['mt'][2], data[0]['mt'][3], data[0]['mt'][4],
+                           data[0]['mt'][5], data[0]['mt'][6], data[0]['mt'][7], data[0]['mt'][8], data[1])
+
+        print(f"{f'Sim' if mt.iniciarMaquina() else f'Não'}")
+        # print(f"{f'{GREEN}A linguagem {CYAN}{data[1]}{GREEN} é aceita!{RESET}' if mt.iniciarMaquina() else f'{RED}A linguagem {CYAN}{data[1]}{RED} não é aceita!{RESET}'}")
+
+    except FileNotFoundError as f:
+        print(f"Arquivo não encontrado")
+    except Exception as e:
+        print(e)
