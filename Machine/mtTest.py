@@ -11,7 +11,7 @@ RESET = "\033[0;0m"
 def lerArgs(args):
     try:
         palavra = '' if len(args) < 3 else args[2]
-        nomeJson = args[1]
+        nomeJson = args[1]        
         data = ferramentasJson.ConvertJson.lerJson(f'../{nomeJson}')
     except Exception as e:
         print(e)
