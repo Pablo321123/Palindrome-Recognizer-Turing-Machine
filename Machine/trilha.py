@@ -15,8 +15,13 @@ class Trilha(AbstractFita):
     def montarFita(self):
         self.fita = [[self.charBranco] *
                      len(self.palavra) for _ in range(self.numTrilha)]
-        self.fita[0] = list(self.charInicio + self.palavra)
-        self.fita[1].append(self.charBranco)
+        
+        for i in range(len(self.fita)):        
+            if i == 0:    
+                self.fita[0] = list(self.charInicio + self.palavra)
+            else:
+                self.fita[i].append(self.charBranco)
+                
         self.tamFita = len(self.fita[0])
         self.adicionarBlocosDireita()
         self.adicionarBlocosDireita()
@@ -53,4 +58,7 @@ class Trilha(AbstractFita):
 
     # Retorna os simbolos antuais na fita
     def getEstadoAtual(self):
-        return [self.fita[0][self.cabecote], self.fita[1][self.cabecote]]
+        lista = []
+        for i in range(len(self.fita)):
+            lista.append(self.fita[i][self.cabecote])
+        return lista
